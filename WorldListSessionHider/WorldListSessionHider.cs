@@ -21,20 +21,21 @@ namespace WorldListSessionHider
 		public static ModConfiguration Config;
 
 		[AutoRegisterConfigKey]
-		private static ModConfigurationKey<bool> MOD_ENABLED = new ModConfigurationKey<bool>("MOD_ENABLED", "Enable hiding sessions:", () => true);
+		private static ModConfigurationKey<bool> MOD_ENABLED = new ModConfigurationKey<bool>("MOD_ENABLED", "Mod activated:", () => true);
 		[AutoRegisterConfigKey]
 		private static ModConfigurationKey<dummy> DUMMY_0 = new ModConfigurationKey<dummy>("DUMMY_0", "<size=0></size>", () => new dummy());
 		[AutoRegisterConfigKey]
 		private static ModConfigurationKey<dummy> DUMMY_0_1 = new ModConfigurationKey<dummy>("DUMMY_0_1", "<color=green>[FILTERS]</color>", () => new dummy());
 		[AutoRegisterConfigKey]
 		private static ModConfigurationKey<bool> HIDE_FILTERED_SESSIONS = new ModConfigurationKey<bool>("HIDE_FILTERED_SESSIONS", "Use filters:", () => false);
-
 		[AutoRegisterConfigKey]
-		private static ModConfigurationKey<string> HOST_USERIDS = new ModConfigurationKey<string>("HOST_USERIDS", "Host User IDs:", () => "");
+		private static ModConfigurationKey<dummy> DUMMY_0_2 = new ModConfigurationKey<dummy>("DUMMY_0_2", "<size=0></size>", () => new dummy());
 		[AutoRegisterConfigKey]
-		private static ModConfigurationKey<string> HOST_USERNAMES = new ModConfigurationKey<string>("HOST_USERNAMES", "Host Usernames:", () => "");
+		private static ModConfigurationKey<string> HOST_USERIDS = new ModConfigurationKey<string>("HOST_USERIDS", "Host User IDs to filter:", () => "");
 		[AutoRegisterConfigKey]
-		private static ModConfigurationKey<string> SESSION_IDS = new ModConfigurationKey<string>("SESSION_IDS", "Session IDs:", () => "");
+		private static ModConfigurationKey<string> HOST_USERNAMES = new ModConfigurationKey<string>("HOST_USERNAMES", "Host Usernames to filter:", () => "");
+		[AutoRegisterConfigKey]
+		private static ModConfigurationKey<string> SESSION_IDS = new ModConfigurationKey<string>("SESSION_IDS", "Session IDs to filter:", () => "");
 		[AutoRegisterConfigKey]
 		private static ModConfigurationKey<dummy> DUMMY_1 = new ModConfigurationKey<dummy>("DUMMY_1", "<i><color=gray>All of these can be comma-separated to store multiple values.</color></i>", () => new dummy());
 		[AutoRegisterConfigKey]
@@ -116,7 +117,7 @@ namespace WorldListSessionHider
 		// although maybe WorldThumbnailItem can exist in non-userspace worlds?
 		private static FrooxEngine.User localUser = null;
 
-		private static List<SessionInfo> sessions = new List<SessionInfo>();
+		private static List<SessionInfo> sessionsForWorldId = new List<SessionInfo>();
 
 		enum HideReason
 		{
@@ -183,9 +184,10 @@ namespace WorldListSessionHider
 			return false;
 		}
 
-		// (Ignore this comment) If the number of sessions for a worldThumbnailItem keeps changing rapidly, use the first non-stuck and non-ended session as the primary one
 		private static void ProcessWorldThumbnailItem(WorldThumbnailItem worldThumbnailItem, string debugString = "")
 		{
+			// Ignore these comments
+			// If the number of sessions for a worldThumbnailItem keeps changing rapidly, use the first non-stuck and non-ended session as the primary one
 			//bool hasMultipleSessions = false;
 
 			localUser = worldThumbnailItem.LocalUser;
@@ -194,10 +196,10 @@ namespace WorldListSessionHider
 
 			if (sessionInfo == null)
 			{
-				sessions.Clear();
-				sessions.TrimExcess();
-				Engine.Current.Cloud.Sessions.GetSessionsForWorldId(RecordId.TryParse(worldThumbnailItem.WorldOrSessionId), sessions);
-				sessionInfo = (SessionInfo)getBestSessionMethod.Invoke(worldThumbnailItem, new object[] { sessions });
+				sessionsForWorldId.Clear();
+				sessionsForWorldId.TrimExcess();
+				Engine.Current.Cloud.Sessions.GetSessionsForWorldId(RecordId.TryParse(worldThumbnailItem.WorldOrSessionId), sessionsForWorldId);
+				sessionInfo = (SessionInfo)getBestSessionMethod.Invoke(worldThumbnailItem, new object[] { sessionsForWorldId });
 				if (sessionInfo == null) return;
 				//hasMultipleSessions = true;
 			}
@@ -220,7 +222,7 @@ namespace WorldListSessionHider
 				string nameText;
 				bool configValue;
 				bool flag = true;
-				string logString = "Hiding session: " + sessionInfo.Name + " Reason: ";
+				string logString = "Hiding session: \"" + sessionInfo.Name + "\" Reason: ";
 				switch (reason)
 				{
 					case HideReason.Stuck:
