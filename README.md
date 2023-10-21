@@ -8,7 +8,7 @@ This does not prevent other people from seeing your sessions! It is purely a loc
 
 Configure with [Resonite Mod Settings](https://github.com/badhaloninja/ResoniteModSettings).
 
-You can choose to display sessions with no thumbnail like in the image above or you can hide them completely so they will not show up at all.
+You can choose to display sessions with no thumbnail and info removed like in the image above or you can hide them completely so they will not show up at all.
 
 ## Installation
 1. Install [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader).
