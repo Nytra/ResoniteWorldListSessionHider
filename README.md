@@ -2,15 +2,13 @@
 
 ![filteredResonite2](https://github.com/Nytra/ResoniteWorldListSessionHider/assets/14206961/57baf1ef-e4bc-424f-b902-af9c5235a8a4)
 
-A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that visually hides session info and thumbnails in your session browser based on host userID/username or sessionID, and can also hide stuck sessions. A stuck session is one that appears in the session list but doesn't actually exist and cannot be joined.
+A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that hides session info and thumbnails in your session browser based on the host's userID/username or the sessionID, and can also hide stuck sessions. A stuck session is one that appears in the session list but doesn't actually exist and cannot be joined.
 
 This does not prevent other people from seeing your sessions! It is purely a local change that only the mod user can see.
 
 Configure with [Resonite Mod Settings](https://github.com/badhaloninja/ResoniteModSettings).
 
-This resolves this Neos issue: https://github.com/Neos-Metaverse/NeosPublic/issues/3483
-
-And also this one: https://github.com/Neos-Metaverse/NeosPublic/issues/3563
+You can choose to display sessions with no thumbnail like in the image above or you can hide them completely so they will not show up at all.
 
 ## Installation
 1. Install [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader).
