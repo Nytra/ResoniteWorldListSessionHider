@@ -1,6 +1,6 @@
 # WorldListSessionHider
 
-![filteredUwuResonite](https://github.com/Nytra/ResoniteWorldListSessionHider/assets/14206961/7fd19f9f-c08e-4e88-9a06-8bb73e5e5a60)
+![filteredResonite2](https://github.com/Nytra/ResoniteWorldListSessionHider/assets/14206961/57baf1ef-e4bc-424f-b902-af9c5235a8a4)
 
 A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that visually hides session info and thumbnails in your session browser based on host userID/username or sessionID, and can also hide stuck sessions. A stuck session is one that appears in the session list but doesn't actually exist and cannot be joined.
 
