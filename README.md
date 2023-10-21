@@ -4,7 +4,7 @@
 
 A [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader) mod for [Resonite](https://resonite.com/) that visually hides session info and thumbnails in your session browser based on host userID/username or sessionID, and can also hide stuck sessions. A stuck session is one that appears in the session list but doesn't actually exist and cannot be joined.
 
-This does not prevent other people from seeing your sessions! It is purely a local change.
+This does not prevent other people from seeing your sessions! It is purely a local change that only the mod user can see.
 
 Configure with [Resonite Mod Settings](https://github.com/badhaloninja/ResoniteModSettings).
 
