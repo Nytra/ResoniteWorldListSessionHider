@@ -15,7 +15,7 @@ namespace WorldListSessionHider
 	{
 		public override string Name => "WorldListSessionHider";
 		public override string Author => "Nytra";
-		public override string Version => "1.0.0";
+		public override string Version => "1.1.0";
 		public override string Link => "https://github.com/Nytra/ResoniteWorldListSessionHider";
 
 		public static ModConfiguration Config;
@@ -283,7 +283,7 @@ namespace WorldListSessionHider
 		[HarmonyPatch(typeof(WorldThumbnailItem), "UpdateInfo")]
 		class WorldListSessionHiderPatch
 		{
-			public static void Postfix(WorldThumbnailItem __instance, FrooxEngine.Record record, IReadOnlyList<SessionInfo> sessions, IReadOnlyList<World> openedWorlds)
+			public static void Postfix(WorldThumbnailItem __instance, FrooxEngine.Store.Record record, IReadOnlyList<SessionInfo> sessions, IReadOnlyList<World> openedWorlds)
 			{
 				if (!Config.GetValue(MOD_ENABLED)) return;
 
